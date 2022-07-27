@@ -14,7 +14,7 @@ windImg.src=windimg;
 humidImg.src=humidimg;
 
 async function getData(loc) {
-    let response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${loc}&APPID=91d292578f4eb268f32c22e1219e7566&units=metric`);
+    let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${loc}&APPID=91d292578f4eb268f32c22e1219e7566&units=metric`);
     let data= await response.json();
     console.log(data);
     if(data.cod==404 || data.cod==400) { alert("error city doesnt exist"); }
@@ -44,7 +44,7 @@ function processData(data,data2){
     location.humid=data.main.humidity;
     location.wind=(Math.round((data.wind.speed)*(0.001*3600) * 100)/100).toFixed(1);
     let iconId= data.weather[0].icon;
-    location.iconUrl=`http://openweathermap.org/img/wn/${iconId}@2x.png`;
+    location.iconUrl=`https://openweathermap.org/img/wn/${iconId}@2x.png`;
     location.timeZone=data2.timezone;
     let d=new Date();
     let s=formatInTimeZone(d,location.timeZone, 'yyyy-MM-dd HH:mm:ss');
